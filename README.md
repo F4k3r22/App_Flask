@@ -91,6 +91,32 @@ CREATE TABLE users (
     gender VARCHAR(10)
 );
 ```
+```sql
+CREATE TABLE `stripe_transactions` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `user_id` int DEFAULT NULL,
+    `stripe_transaction_id` varchar(255) DEFAULT NULL,
+    `amount` decimal(10, 2) DEFAULT NULL,
+    `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    KEY `user_id` (`user_id`),
+    CONSTRAINT `stripe_transactions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci
+```
+```sql
+CREATE TABLE `image_generations` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `user_id` int DEFAULT NULL,
+    `generation_id` varchar(255) DEFAULT NULL,
+    `prompt` text,
+    `status` varchar(50) DEFAULT 'pending',
+    `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+    `completed_at` datetime DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    KEY `user_id` (`user_id`),
+    CONSTRAINT `image_generations_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci
+```
 
 #### 2. **Production Deployment**
 ##### 2.1. **Nginx Configuration**

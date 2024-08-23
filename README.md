@@ -38,6 +38,8 @@ pip install flask flask-mysqldb requests pillow stripe
    - **Dynamically Generated Prompts**: Based on the user's gender, personalized prompts are generated for LinkedIn or Instagram.
    - **Daily Limit Control**: Implements a limit on image generations every 24 hours.
 
+### Before doing this whole process, you have to create the database, below is how the database is created
+
 ### 8. **Obtaining and Configuring RenderNet APIs**
    - **API Key Configuration and Image Download:** Go to the function `@app.route('/generate', methods=['POST'])` and modify `api_key = 'Your_API_Key'` to your RenderNet API key.
 

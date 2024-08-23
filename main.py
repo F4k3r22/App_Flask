@@ -107,9 +107,10 @@ def add_user():
     email=request.form.get('email')
     pno=request.form.get('pno')
     password=request.form.get('password')
+    gender = request.form.get('gender')
     user_id = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
     cursor = mysql.connection.cursor()
-    cursor.execute("""INSERT INTO `users` (`name`, `email`, `pno`, `password`, `user_id`) values ("{}","{}","{}","{}","{}")""".format(name,email,pno,password,user_id))
+    cursor.execute("""INSERT INTO `users` (`name`, `email`, `pno`, `password`, `user_id`, `gender`) values ("{}","{}","{}","{}","{}","{}")""".format(name,email,pno,password,user_id,gender))
     mysql.connection.commit()
     return redirect('/login')
 
@@ -350,6 +351,6 @@ def get_profile_photo(user_id):
         return None
 
 if __name__ == '__main__':
-    app.run(port=80)
+    app.run()
 
 

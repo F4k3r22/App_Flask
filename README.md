@@ -1,81 +1,77 @@
-### Documentación Detallada de la Aplicación Flask
+### Detailed Documentation for the Flask Application
 
-#### 1. **Configuración y Dependencias**
-   - **Flask**: Framework para manejar rutas y lógica web.
-   - **Flask-MySQLdb**: Conecta la aplicación con una base de datos MySQL.
-   - **Stripe**: Gestiona los pagos dentro de la aplicación.
-   - **Otros Módulos**: `PIL` para manejo de imágenes, `requests` para realizar solicitudes HTTP, y `os`, `time` y `random` para funcionalidades adicionales.
+#### 1. **Setup and Dependencies**
+   - **Flask**: Framework for handling routes and web logic.
+   - **Flask-MySQLdb**: Connects the application to a MySQL database.
+   - **Stripe**: Manages payments within the application.
+   - **Other Modules**: `PIL` for image handling, `requests` for making HTTP requests, and `os`, `time`, and `random` for additional functionalities.
 
-### Instalación 
+### Installation 
 
    ```bash
 pip install flask flask-mysqldb requests pillow stripe
 ```
 
-#### 2. **Rutas Principales**
-   - **`/`**: Página principal que muestra los créditos restantes del usuario.
-   - **`/login` y `/register`**: Rutas para iniciar sesión y registrarse.
-   - **`/generate`**: Permite a los usuarios generar imágenes usando una API externa (Rendernet).
-   - **`/buy_credits` y `/purchase_credits`**: Gestionan la compra de créditos usando Stripe.
-   - **`/payment_success`**: Actualiza los créditos del usuario después de una compra exitosa.
+#### 2. **Main Routes**
+   - **`/`**: Main page showing the user's remaining credits.
+   - **`/login` and `/register`**: Routes for logging in and registering.
+   - **`/generate`**: Allows users to generate images using an external API (Rendernet).
+   - **`/buy_credits` and `/purchase_credits`**: Manage credit purchases using Stripe.
+   - **`/payment_success`**: Updates the user's credits after a successful purchase.
 
-#### 3. **Gestión de Créditos**
-   - **Validación de Créditos**: Antes de generar una imagen, se verifica si el usuario tiene créditos disponibles.
-   - **Actualización de Créditos**: Después de la generación de imágenes o la compra de créditos, la base de datos se actualiza.
+#### 3. **Credit Management**
+   - **Credit Validation**: Before generating an image, it checks if the user has available credits.
+   - **Credit Update**: After image generation or credit purchase, the database is updated.
 
-#### 4. **Integración con Stripe**
-   - **`purchase_credits`**: Crea una sesión de pago en Stripe y redirige al usuario a la página de pago.
-   - **`payment_success`**: Actualiza los créditos del usuario tras una compra exitosa y lo redirige a la página de confirmación.
+#### 4. **Stripe Integration**
+   - **`purchase_credits`**: Creates a payment session in Stripe and redirects the user to the payment page.
+   - **`payment_success`**: Updates the user's credits after a successful purchase and redirects them to the confirmation page.
 
-#### 5. **Manejo de Imágenes**
-   - **Carga y Procesamiento de Imágenes**: Los usuarios pueden subir imágenes (por ejemplo, para usar FaceLock), las cuales son procesadas y enviadas a la API de Rendernet para generar nuevas imágenes.
+#### 5. **Image Handling**
+   - **Image Upload and Processing**: Users can upload images (e.g., for FaceLock), which are processed and sent to the Rendernet API to generate new images.
 
-#### 6. **Seguridad**
-   - **Manejo de Sesiones**: Asegura que solo usuarios autenticados puedan acceder a funciones como generación de imágenes y compra de créditos.
-   - **Almacenamiento Seguro**: La clave secreta de Stripe y otras configuraciones sensibles se almacenan de manera segura.
+#### 6. **Security**
+   - **Session Management**: Ensures that only authenticated users can access functions like image generation and credit purchases.
+   - **Secure Storage**: The Stripe secret key and other sensitive configurations are stored securely.
 
-#### 7. **Otras Funcionalidades**
-   - **Prompts Generados Dinámicamente**: Basado en el género del usuario, se generan prompts personalizados para LinkedIn o Instagram.
-   - **Control de Límite Diario**: Implementa un límite de generación de imágenes cada 24 horas.
+#### 7. **Other Features**
+   - **Dynamically Generated Prompts**: Based on the user's gender, personalized prompts are generated for LinkedIn or Instagram.
+   - **Daily Limit Control**: Implements a limit on image generations every 24 hours.
 
-### 8. **Obtención y configuración de las API de RenderNet**
-  - **Configuración de la clave API y la descarga de imagenes:** Nos vamos a la función `@app.route('/generate', methods=['POST'])
-def generate_image():`
-y modificamos el `api_key = 'Your_API_Key'` y ponemos nuestra clave API de RenderNet.
+### 8. **Obtaining and Configuring RenderNet APIs**
+   - **API Key Configuration and Image Download:** Go to the function `@app.route('/generate', methods=['POST'])` and modify `api_key = 'Your_API_Key'` to your RenderNet API key.
 
-**Lanzamos la App en modo desarrollador:** modificando la ultima linea para que quede asi `aapp.run(debug=true host='0.0.0.0' port=5000)` y probamos la generación, va obtener un error, pero lo importante es que mande la petición al servidor de RenderNet.
+   **Launch the App in Development Mode:** Modify the last line to `app.run(debug=True, host='0.0.0.0', port=5000)` and test generation. You will encounter an error, but the important thing is that it sends the request to the RenderNet server.
 
-**Obtener el user_id del servidor de RenderNet:** Despues de mandar la petición vamos a [Listar Generaciones](https://docs.rendernet.ai/api-reference/endpoint/generations/list_generations) vamos a ver una página algo asi, pon tu API Key en el Header, y le das a Send, deberias ver la generación que haz mandado al servidor.
+   **Obtain `user_id` from RenderNet Server:** After sending the request, go to [List Generations](https://docs.rendernet.ai/api-reference/endpoint/generations/list_generations). You should see a page like this; put your API Key in the Header and click Send. You should see the generation you sent to the server.
 
-![Img](api.PNG)
+   ![Img](api.PNG)
 
-**Aca vas a buscar el campo url**
-![Img](api2.PNG)
+   **Search for the `url` field here**
+   ![Img](api2.PNG)
 
-De este campo vas a copiar el `usr_jFREal2mBT` de la URL `https://redernet-image-data.s3.amazonaws.com/prod/user_generated/usr_jFREal2mBT/img_0qCkaxZ79t.png` (en tu caso sera diferente)
+   From this field, copy the `usr_jFREal2mBT` from the URL `https://rendernet-image-data.s3.amazonaws.com/prod/user_generated/usr_jFREal2mBT/img_0qCkaxZ79t.png` (in your case, it will be different).
 
-Y despues de copiar el user id, lo vas a pegar aqui donde dice `user_id` en esta linea, para obtener correctemente cada imagen generada: `image_url = f"https://redernet-image-data.s3.amazonaws.com/prod/user_generated/user_id/{image_id}.png"`
+   After copying the `user_id`, paste it here where it says `user_id` in this line, to correctly obtain each generated image: `image_url = f"https://rendernet-image-data.s3.amazonaws.com/prod/user_generated/user_id/{image_id}.png"`
 
-### **Despues de estos ajustes ya puedes ir a desplegar producción :b**
+### **After these adjustments, you can proceed to deploy for production :b**
 
+### Deploying to Production
 
-
-### Desplegar a producción
-
-#### 1. **Instalación y Configuración**
-##### 1.1. **Requisitos Previos**
+#### 1. **Installation and Configuration**
+##### 1.1. **Prerequisites**
 - Python 3.x
 - MySQL
-- Nginx (para producción)
-- Pip para instalar dependencias
+- Nginx (for production)
+- Pip to install dependencies
 
-##### 1.2. **Instalación de Dependencias**
+##### 1.2. **Install Dependencies**
 ```bash
 pip install flask flask-mysqldb requests pillow stripe
 ```
 
-##### 1.3. **Configuración de la Base de Datos**
-Crea una base de datos MySQL con el siguiente script, igual puedes cambiar el nombre de la base de datos si inifinityca no te convence:
+##### 1.3. **Database Configuration**
+Create a MySQL database with the following script; you can change the database name if `infinityca` does not suit you:
 
 ```sql
 CREATE DATABASE infinityca;
@@ -94,9 +90,9 @@ CREATE TABLE users (
 );
 ```
 
-#### 2. **Despliegue en Producción**
-##### 2.1. **Configuración de Nginx**
-Configura Nginx como un reverse proxy para tu aplicación Flask.
+#### 2. **Production Deployment**
+##### 2.1. **Nginx Configuration**
+Configure Nginx as a reverse proxy for your Flask application.
 
 ```nginx
 server {
@@ -112,13 +108,15 @@ server {
 }
 ```
 
-##### 2.2. **Iniciar la Aplicación**
-Usa `gunicorn` para ejecutar la aplicación en producción:
+##### 2.2. **Start the Application**
+Use `gunicorn` to run the application in production:
 
 ```bash
 gunicorn --workers 3 app:app
 ```
 
-#### 3. **Mantenimiento y Seguridad**
-- **Seguridad**: Asegúrate de que las configuraciones de las claves API sean seguras.
-- **SSL**: Configura un certificado SSL en Nginx para asegurar las conexiones.
+#### 3. **Maintenance and Security**
+- **Security**: Ensure API key configurations are secure.
+- **SSL**: Configure an SSL certificate in Nginx to secure connections.
+
+---

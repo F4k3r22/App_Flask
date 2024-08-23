@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Credits - RenderNet API CALL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('index') }}" class="back-btn">← Home</a>
+        <div class="credits-container">
+            <span>Credits: {{ credits }}</span>
+        </div>
+        <h2>Buy credits for new generations</h2>
+        <div class="credit-options">
+            <form action="{{ url_for('purchase_credits') }}" method="post">
+                <div class="credit-option">
+                    <img src="{{ url_for('static', filename='coin-svgrepo-com.svg') }}" alt="Credits" class="icon">
+                    <span>10 Credits</span>
+                    <span>$10</span>
+                    <button type="submit" name="credits" value="10">Buy now</button>
+                </div>
+            </form>
+            <form action="{{ url_for('purchase_credits') }}" method="post">
+                <div class="credit-option">
+                    <img src="{{ url_for('static', filename='coin-svgrepo-com.svg') }}" alt="Credits" class="icon">
+                    <span>50 Credits</span>
+                    <span>$50</span>
+                    <button type="submit" name="credits" value="50">Buy now</button>
+                </div>
+            </form>
+            <form action="{{ url_for('purchase_credits') }}" method="post">
+                <div class="credit-option">
+                    <img src="{{ url_for('static', filename='coin-svgrepo-com.svg') }}" alt="Credits" class="icon">
+                    <span>100 Credits</span>
+                    <span>$100</span>
+                    <button type="submit" name="credits" value="100">Buy now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

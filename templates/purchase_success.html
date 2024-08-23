@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Successful - RenderNet API CALL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('index') }}" class="back-btn">← Home</a>
+        <div class="credits-container">
+            <span>Credits: {{ credits }}</span>
+            <a href="{{ url_for('buy_credits') }}" class="buy-credits-btn">Buy more credits</a>
+        </div>
+        <div class="success-message">
+            <img src="{{ url_for('static', filename='check-circle-svgrepo-com.svg') }}" alt="Success" class="icon">
+            <h2>Your credits have been<br>purchased successfully</h2>
+        </div>
+    </div>
+</body>
+</html>

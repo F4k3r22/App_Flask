@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Login</title>
+        <link rel="icon" type="image/png" href="/static/icon/faviconn.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Mulish&display=swap"
+            rel="stylesheet"
+        >
+        <link rel="stylesheet" href="/static/CSS/login.css">
+    </head>
+    <body>
+        <div class="login-wrapper">
+            <div class="login-side">
+<!--            <a href="#" title="Logo">
+                    <img class="logo" src="/static/assets-login/logocanva.png" alt="Logo">
+                </a> -->
+                <div class="my-form__wrapper">
+                    <div class="login-welcome-row">
+                        <h1>Welcome back &#x1F44F;</h1>
+                        <p>Please enter your details!</p>
+                    </div>
+                    <form action="/login_validation" id="formvalidate" method="post" class="my-form">
+                        <!--<div class="socials-row">
+                            <a
+                                href="#"
+                                title="Use Google"
+                            >
+                                <img src="/static/assets-login/google.png" alt="Google">
+                                Log in with Google
+                            </a>
+                            <a
+                                href="#"
+                                title="Use Apple"
+                            >
+                                <img src="/static/assets-login/apple.png" alt="Apple">
+                                Log in with Apple
+                            </a>
+                        </div>
+                        <div class="divider">
+                            <div class="divider-line"></div>
+                            Or
+                            <div class="divider-line"></div>
+                        </div>-->
+                        <div class="text-field">
+                            <label for="email">Email:</label>
+                            <input
+                                type="text"
+                                id="userName"
+                                name="email"
+                                placeholder="Your Email"
+                                required
+                            >
+                            <img
+                                alt="Email Icon"
+                                title="Email Icon"
+                                src="/static/assets-login/email.svg"
+                            >
+                        </div>
+                        <div class="text-field">
+                            <label for="password">Password:</label>
+                            <input
+                                id="userPassword"
+                                type="password"
+                                name="password"
+                                placeholder="Your Password"
+                                title="Minimum 6 characters at 
+                                    least 1 Alphabet and 1 Number"
+                                pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
+                                required
+                            >
+                            <img
+                                alt="Password Icon"
+                                title="Password Icon"
+                                src="/static/assets-login/password.svg"
+                            >
+                        </div>
+                        <input type="submit" class="my-form__button" value="Login">
+                        <div class="my-form__actions">
+                            <div class="my-form__row">
+                                <span>Did you forget your password?</span>
+                                <a href="#" title="Reset Password">
+                                    Reset Password
+                                </a>
+                            </div>
+                            <div class="my-form__signup">
+                                <a href="/register" title="Create Account">
+                                    Create Account
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="info-side">
+                <img src="/static/assets-login/jj.png" alt="Mock" class="mockup">    
+                </div>
+            </div>
+        </div>
+        <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js'></script>
+        <script src="/static/JS/login.js"></script>
+    </body>
+</html>
+

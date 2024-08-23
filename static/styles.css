@@ -1,0 +1,108 @@
+/* Estilos generales del cuerpo */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e9f5ff; /* Color de fondo suave */
+    color: #333; /* Color de texto oscuro */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Apilar los elementos en columna */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Asegura que el cuerpo tenga al menos la altura de la ventana */
+    text-align: center;
+}
+
+/* Contenedor principal del formulario */
+form {
+    background: #ffffff; /* Fondo blanco para el contenedor */
+    border-radius: 12px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    padding: 30px; /* Espaciado interior */
+    max-width: 600px; /* Ancho máximo */
+    width: 90%; /* Ancho responsivo */
+    margin: 20px; /* Margen para evitar que se pegue a los bordes en pantallas pequeñas */
+    overflow-y: auto; /* Habilita el desplazamiento vertical si es necesario */
+}
+
+/* Estilo del título principal */
+h1 {
+    font-size: 28px; /* Tamaño del texto */
+    color: #007bff; /* Color azul para el título */
+    margin-bottom: 20px; /* Margen inferior */
+}
+
+/* Estilo de los grupos de formularios */
+form div {
+    margin-bottom: 20px; /* Margen inferior */
+    text-align: left; /* Alinear texto a la izquierda */
+}
+
+/* Estilo de las etiquetas */
+label {
+    display: block; /* Mostrar como bloque */
+    margin-bottom: 8px; /* Margen inferior */
+    font-weight: bold; /* Negrita */
+    color: #555; /* Color gris oscuro */
+}
+
+/* Estilo de los campos de entrada y selectores */
+input[type="text"],
+input[type="number"],
+select,
+input[type="file"] {
+    width: 100%; /* Ancho completo */
+    padding: 12px; /* Espaciado interior */
+    box-sizing: border-box; /* Incluir borde y padding en el ancho */
+    border: 1px solid #ddd; /* Borde suave */
+    border-radius: 8px; /* Esquinas redondeadas */
+    font-size: 16px; /* Tamaño del texto */
+    transition: border 0.3s; /* Transición suave para el borde */
+}
+
+/* Estilo de los campos al enfocar */
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+input[type="file"]:focus {
+    border-color: #007bff; /* Cambia el color del borde al enfocar */
+    outline: none; /* Quitar el contorno */
+}
+
+/* Estilo del botón */
+button {
+    background-color: #007bff; /* Color de fondo azul */
+    color: white; /* Texto blanco */
+    padding: 12px 20px; /* Espaciado interior */
+    border: none; /* Sin borde */
+    border-radius: 8px; /* Esquinas redondeadas */
+    font-size: 16px; /* Tamaño del texto */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+    transition: background-color 0.3s; /* Transición suave para el fondo */
+}
+
+/* Estilo del botón al pasar el cursor */
+button:hover {
+    background-color: #0056b3; /* Color más oscuro al pasar el cursor */
+}
+
+/* Estilo del subtítulo */
+h2 {
+    font-size: 22px; /* Tamaño del texto */
+    color: #333; /* Color oscuro */
+    margin-top: 20px; /* Margen superior */
+}
+
+/* Estilo de la imagen generada */
+img {
+    max-width: 100%; /* Ancho máximo */
+    border-radius: 8px; /* Esquinas redondeadas */
+    margin-top: 10px; /* Margen superior */
+}
+
+/* Estilo para mensajes de error */
+p {
+    color: #d9534f; /* Color rojo para errores */
+    font-weight: bold; /* Negrita para mensajes */
+    margin-top: 20px; /* Margen superior */
+}

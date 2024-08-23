@@ -1,0 +1,286 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RenderNet API CALL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            color: #fff;
+            margin-bottom: 40px;
+        }
+        h2 {
+            color: #979797;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .option {
+            background-color: #000;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            cursor: pointer;
+        }
+        .option img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .arrow {
+            font-size: 24px;
+            color: #fff;
+            margin: 0 10px;
+        }
+        #uploadForm {
+            display: none;
+            margin-top: 20px;
+        }
+        #generatedImage {
+            margin-top: 20px;
+            max-width: 100%;
+        }
+        #facelock_image {
+            display: none;
+        }
+        #uploadedImagePreview {
+            max-width: 200px;
+            max-height: 200px;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RenderNet API CALL</h1>
+        <h2 style="color: #fff; font-size: 2.5em;">Ready to create a<br>new image of<br>yourself?</h2>
+        <div class="options">
+            <label for="facelock_image" class="option" id="uploadOption">
+                <img src="{{ url_for('static', filename='face-id-svgrepo-com.svg') }}" alt="Upload face">
+                <span>Upload a picture of your face</span>
+            </label>
+            <span class="arrow">→</span>
+            <div class="option" id="linkedinOption">
+                <img src="{{ url_for('static', filename='linkedin-linked-in-svgrepo-com.svg') }}" alt="LinkedIn">
+                <span>Create a photo for your LinkedIn profile</span>
+            </div>
+            <span class="arrow">→</span>
+            <div class="option" id="instagramOption">
+                <img src="{{ url_for('static', filename='instagram-svgrepo-com.svg') }}" alt="Instagram">
+                <span>Create a photo for Instagram</span>
+            </div>
+        </div>
+        <form id="uploadForm" action="/generate" method="post" enctype="multipart/form-data">
+            <input type="file" id="facelock_image" name="facelock_image" accept="image/*" required>
+            <input type="hidden" id="promptType" name="promptType" value="">
+        </form>
+        <img id="uploadedImagePreview" alt="Uploaded Image Preview">
+        {% if image_url %}
+        <img id="generatedImage" src="{{ image_url }}" alt="Generated Image">
+        <a href="{{ image_url }}" download>Download Image</a>
+        {% endif %}
+        {% if error %}
+        <p>Error: {{ error }}</p>
+        {% endif %}
+    </div>
+    <script>
+        document.getElementById('facelock_image').addEventListener('change', function(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var img = document.getElementById('uploadedImagePreview');
+                img.src = e.target.result;
+                img.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        });
+
+        document.getElementById('linkedinOption').addEventListener('click', function() {
+            if (document.getElementById('facelock_image').files.length > 0) {
+                document.getElementById('promptType').value = 'linkedin';
+                document.getElementById('uploadForm').submit();
+            } else {
+                alert('Please upload an image first.');
+            }
+        });
+
+        document.getElementById('instagramOption').addEventListener('click', function() {
+            if (document.getElementById('facelock_image').files.length > 0) {
+                document.getElementById('promptType').value = 'instagram';
+                document.getElementById('uploadForm').submit();
+            } else {
+                alert('Please upload an image first.');
+            }
+        });
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RenderNet API CALL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            color: #fff;
+            margin-bottom: 40px;
+        }
+        h2 {
+            color: #979797;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .option {
+            background-color: #000;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            cursor: pointer;
+        }
+        .option img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .arrow {
+            font-size: 24px;
+            color: #fff;
+            margin: 0 10px;
+        }
+        #uploadForm {
+            display: none;
+            margin-top: 20px;
+        }
+        #generatedImage {
+            margin-top: 20px;
+            max-width: 100%;
+        }
+        #facelock_image {
+            display: none;
+        }
+        #uploadedImagePreview {
+            max-width: 200px;
+            max-height: 200px;
+            margin-top: 20px;
+            display: none;
+        }
+        .credits-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.buy-credits-btn {
+    background-color: #fff;
+    color: #000;
+    padding: 5px 10px;
+    border-radius: 20px;
+    text-decoration: none;
+    margin-left: 10px;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RenderNet API CALL</h1>
+        <div class="credits-container">
+            <span>Credits: {{ credits }}</span>
+            <a href="{{ url_for('buy_credits') }}" class="buy-credits-btn">Buy more credits</a>
+        </div>
+        <h2>Ready to create a<br>new image of<br>yourself?</h2>
+        <div class="options">
+            <label for="facelock_image" class="option" id="uploadOption">
+                <img src="{{ url_for('static', filename='face-id-svgrepo-com.svg') }}" alt="Upload face">
+                <span>Upload a picture of your face</span>
+            </label>
+            <span class="arrow">→</span>
+            <div class="option" id="linkedinOption">
+                <img src="{{ url_for('static', filename='linkedin-linked-in-svgrepo-com.svg') }}" alt="LinkedIn">
+                <span>Create a photo for your LinkedIn profile</span>
+            </div>
+            <span class="arrow">→</span>
+            <div class="option" id="instagramOption">
+                <img src="{{ url_for('static', filename='instagram-svgrepo-com.svg') }}" alt="Instagram">
+                <span>Create a photo for Instagram</span>
+            </div>
+        </div>
+        <form id="uploadForm" action="{{ url_for('generate_image') }}" method="post" enctype="multipart/form-data">
+            <input type="file" id="facelock_image" name="facelock_image" accept="image/*" required>
+            <input type="hidden" id="promptType" name="promptType" value="">
+        </form>
+    </div>
+    <script>
+        document.getElementById('facelock_image').addEventListener('change', function(event) {
+            var file = event.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var img = document.getElementById('uploadedImagePreview');
+                img.src = e.target.result;
+                img.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        });
+
+        document.getElementById('linkedinOption').addEventListener('click', function() {
+            if (document.getElementById('facelock_image').files.length > 0) {
+                document.getElementById('promptType').value = 'linkedin';
+                document.getElementById('uploadForm').submit();
+            } else {
+                alert('Please upload an image first.');
+            }
+        });
+
+        document.getElementById('instagramOption').addEventListener('click', function() {
+            if (document.getElementById('facelock_image').files.length > 0) {
+                document.getElementById('promptType').value = 'instagram';
+                document.getElementById('uploadForm').submit();
+            } else {
+                alert('Please upload an image first.');
+            }
+        });
+    </script>
+</body>
+</html>

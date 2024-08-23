@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your New Image - RenderNet API CALL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('index') }}" class="back-btn">← Home</a>
+        <div class="credits-container">
+            <span>Credits: {{ credits }}</span>
+            <a href="{{ url_for('buy_credits') }}" class="buy-credits-btn">Buy more credits</a>
+        </div>
+        <h2>Your new image of yourself</h2>
+        <img src="{{ image_url }}" alt="Generated Image" class="generated-image">
+        <a href="{{ image_url }}" download class="download-btn">
+            <img src="{{ url_for('static', filename='download-svgrepo-com.svg') }}" alt="Download" class="icon">
+            Download the image here
+        </a>
+    </div>
+</body>
+</html>
